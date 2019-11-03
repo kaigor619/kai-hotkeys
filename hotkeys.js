@@ -1,194 +1,27 @@
-// const DocKeyDown = {
-// elem: document,
-// obj_events: [],
-// key_arr: [],
-// presses: [],
-// key_press: [],
-// objkeys: {
-//   ctrl: 17,
-//   backspace: 8,
-//   tab: 9,
-//   enter: 13,
-//   shift: 16,
-//   alt: 18,
-//   capslock: 20,
-//   escape: 27,
-//   'left-arrow': 37,
-//   'up-arrow': 38,
-//   'right-arrow': 39,
-//   'down-arrow': 40,
-//   delete: 46,
-// },
-// timer: setTimeout(function() {}, 0),
-//   init: function() {
-//     // document.addEventListener('DOMContentLoaded', function() {
-//     this.events();
-//     // });
-//   },
-//   push_hotkeys: function(str, func) {
-// var arr;
-// var mains_keys = this.objkeys;
-// var async_mas = [];
-// for (var i = 0; i < str.length; i++) {
-//   if (str[i].indexOf('+') > -1) {
-//     arr = str[i].split('+');
-//     for (var a = 0; a < arr.length; a++) {
-//       if (arr[a] in mains_keys) {
-//         async_mas.push(mains_keys[arr[a]]);
-//       } else {
-//         async_mas.push(
-//           String(arr[a])
-//             .toUpperCase()
-//             .charCodeAt(0),
-//         );
-//       }
-//     }
-//     var obj = {
-//       name: async_mas,
-//       func: func,
-//     };
-//     this.presses.push(obj);
-//     async_mas = [];
-//   } else {
-//     if (str[i] in mains_keys) {
-//       arr = [mains_keys[str[i]]];
-//     } else {
-//       arr = [str[i]];
-//     }
-//     var obj = {
-//       name: arr,
-//       func: func,
-//     };
-//     console.log(obj);
-//     this.obj_events.push(obj);
-//   }
-// }
-
-//     // console.log(this.presses);
-//     // console.log(this.obj_events);
-//   },
-// del_event: function(str) {
-//   for (var i = 0; i < this.obj_events.length; i++) {
-//     for (var key in this.obj_events[i]) {
-//       if (this.obj_events[i].name == str) {
-//         this.obj_events.splice(i, 1);
-//       }
-//     }
-//   }
-// },
-//   check_str: function() {
-//     clearTimeout(this.timer);
-//     var self = this;
-//     this.timer = setTimeout(function() {
-//       self.key_arr.splice(0, self.key_arr.length);
-//     }, 2000);
-//   },
-//   events: function() {
-//     var self = this;
-//     var mains_keys = this.objkeys;
-//     document.onkeydown = function(e) {
-//       var key_arr = self.key_arr;
-
-//       var val = String.fromCharCode(e.which);
-
-//       val = val.toLowerCase();
-//       var res;
-
-//       var q = false;
-//       for (var key in mains_keys) {
-//         if (mains_keys[key] == e.which) {
-//           res = mains_keys[key];
-//           q = true;
-//         }
-//       }
-//       if (q == true) {
-//         key_arr.push(res);
-//       } else key_arr.push(val);
-
-//       var str = '';
-//       for (var i = 0; i < key_arr.length; i++) {
-//         str += key_arr[i];
-//       }
-//       var hotkeys = self.key_arr;
-//       var custom_key = self.obj_events;
-
-//       // Одновременная обработка клавиш
-//       var presses = self.presses;
-//       var key_press = self.key_press;
-//       var length = key_press.length;
-//       var m = 0;
-//       var z = true;
-//       if (key_press[length - 1] != e.which) {
-//         key_press.push(e.which);
-//         // console.log(key_press);
-//         for (var i = 0; i < presses.length; i++) {
-//           var mas = presses[i].name;
-//           for (var c = 0; c < mas.length; c++) {
-//             if (key_press[c] == mas[c]) {
-//               m++;
-//               z = false;
-//             }
-//           }
-//           if (m == presses[i].name.length) {
-//             presses[i].func();
-//           }
-//           if (z == false) break;
-//         }
-//       }
-//       var z = true;
-//       for (var i = 0; i < custom_key.length; i++) {
-//         for (var x = 0; x < custom_key[i].name.length; x++) {
-//           for (var q = 0; q < key_arr.length; q++) {
-//             for (var key in mains_keys) {
-//               // alert(custom_key[i].name[x]);
-//               if (key_arr[q] == custom_key[i].name[x]) {
-//                 // alert(custom_key[i].name[x]);
-//                 custom_key[i].func();
-//                 key_arr.splice(0, key_arr.length);
-//                 z = false;
-//                 break;
-//               }
-//             }
-//             if (z == false) break;
-//           }
-
-//           if (z == false) break;
-//           if (str.indexOf(custom_key[i].name[x]) > -1) {
-//             custom_key[i].func();
-//             key_arr.splice(0, key_arr.length);
-//             z = false;
-//             break;
-//           }
-//         }
-//         if (z == false) break;
-//       }
-//       document.onkeyup = function() {
-//         self.key_press = [];
-//         input.value = str;
-//         self.check_str();
-//       };
-//     };
-//   },
-// };
-
 function isArray(value) {
   return typeof value == 'object' && value.constructor === Array;
 }
 function isNull(value) {
   return value === null;
 }
-
+function isNumber(value) {
+  return !isNaN(parseFloat(value)) && isFinite(value);
+}
+function isString(value) {
+  return typeof value == 'string';
+}
 let DataEvents = {
-  elem: document,
-  obj_events: [],
-  key_arr: [],
-  presses: [],
-  key_press: [],
+  keys_rotation: [] /* "По очереди" */,
+  keys_together: [] /* "Одновременно" */,
+  all_keys: [] /* Массив всех клавиш */,
+  key_rot: [],
+  key_tog: [],
   timer: setTimeout(function() {}, 0),
 };
 
 const keydown_options = {
-  connect: '+',
+  together: '+',
+  rotation: '-',
 };
 
 const special_keys = {
@@ -204,43 +37,74 @@ const special_keys = {
   'up-arrow': 38,
   'right-arrow': 39,
   'down-arrow': 40,
+
   delete: 46,
 };
 
-function filling_data(item, func) {
-  let arr_connect;
-  let async_mas = [];
-  const { connect } = keydown_options;
+// Проверка строки и возрат массива чисел
+function process_str(item, connection, arr_result) {
+  item_symbols = item.split(connection);
+  arr_keys = item_symbols.map(symbol => {
+    let code = 0;
+    if (special_keys[symbol]) code = special_keys[symbol];
+    else if (/\{[0-9]*\}/.test(symbol)) {
+      code = +symbol.replace(/(^{*)|(}*)$/g, '');
+    } else code = symbol.toUpperCase().charCodeAt(0);
 
-  if (item.indexOf(connect) > -1) {
-    arr_connect = item.split(connect);
-    arr_connect.forEach(symbol => {
-      let code = '';
-      if (special_keys[symbol]) code = special_keys[symbol];
-      else
-        code = String(symbol)
-          .toUpperCase()
-          .charCodeAt(0);
+    return code;
+  });
+  return arr_keys;
+}
 
-      async_mas.push(code);
-    });
-    let obj = {
-      name: async_mas,
-      func,
-    };
-    DataEvents.presses.push(obj);
-    async_mas = [];
+function check_data(item) {
+  const { together, rotation } = keydown_options;
+  let curr_type = '';
+  let arr_keys = [];
+  if (item.indexOf(together) > -1) {
+    arr_keys = process_str(item, together);
+    curr_type = 'keys_together';
+  } else if (item.indexOf(rotation) > -1) {
+    arr_keys = process_str(item, rotation);
+    curr_type = 'keys_rotation';
   } else {
     if (special_keys[item]) {
-      arr_connect = [special_keys[item]];
-    } else {
-      arr_connect = [item];
+      arr_keys = [special_keys[item]];
+      curr_type = 'keys_together';
+    } else if (item.length == 1) {
+      arr_keys = [
+        String(item)
+          .toUpperCase()
+          .charCodeAt(0),
+      ];
+      curr_type = 'keys_together';
     }
-    var obj = {
-      name: arr_connect,
-      func,
-    };
-    DataEvents.obj_events.push(obj);
+  }
+  return {
+    arr_keys,
+    curr_type,
+  };
+}
+
+// заполнение данными о keyCode
+function filling_data(item, func) {
+  const { together, rotation } = keydown_options;
+  const { length } = DataEvents.all_keys;
+
+  const { arr_keys, curr_type } = check_data(item);
+
+  let obj_allkeys = {
+    codes: arr_keys,
+    name: item,
+    func,
+    curr_type,
+  };
+  let obj_rot = {
+    codes: arr_keys,
+    func_index: length,
+  };
+  if (curr_type !== '') {
+    DataEvents[curr_type].push(obj_rot);
+    DataEvents.all_keys.push(obj_allkeys);
   }
 }
 
@@ -251,20 +115,107 @@ function add_hotkeys(keys, func) {
     });
   else if (typeof keys == 'string') filling_data(keys, func);
 
-  console.log(DataEvents);
+  eventKeyDown();
 }
 
-function del_hotkeys(str) {
-  let i = null;
-  // debugger;
-  const { obj_events, presses } = DataEvents;
-  const arr_search = [obj_events, presses];
-  arr_search.forEach(mas => {
-    if (mas.length > 0) {
-      mas.forEach(({ name }, index) => {
-        if (name == str) i = index;
+function eventKeyDown() {
+  var self = this;
+  let { key_rot, key_tog, keys_together, keys_rotation, all_keys } = DataEvents;
+
+  document.onkeydown = function(e) {
+    let code_num = e.which;
+    let { length } = key_tog;
+    key_rot.push(code_num);
+
+    function run_arr(arr, curr_arr) {
+      let { key_rot, key_tog } = DataEvents;
+      arr.forEach(({ codes, func_index }, i) => {
+        let bool_equal = codes.every((item, index) => item == curr_arr[index]);
+        if (bool_equal) {
+          all_keys[func_index].func();
+          key_rot.splice(0, key_rot.length);
+          // key_tog.splice(0, key_tog.length);
+          return;
+        }
       });
-      if (!isNull(i)) mas.splice(i, 1);
     }
+
+    // keys_together
+    if (key_tog[length - 1] != code_num) {
+      key_tog.push(code_num);
+      run_arr(keys_together, key_tog);
+    }
+
+    // keys_rotation
+    run_arr(keys_rotation, key_rot);
+  };
+  document.onkeyup = function(e) {
+    let last = key_tog.length - 1;
+
+    if (last !== -1 && key_tog[last] == e.keyCode) {
+      key_tog.pop();
+    } else key_tog = [];
+
+    check_key();
+  };
+}
+
+function check_key() {
+  let { key_rot } = DataEvents;
+  clearTimeout(DataEvents.timer);
+  DataEvents.timer = setTimeout(function() {
+    key_rot.splice(0, key_rot.length);
+  }, 1000);
+}
+
+function del_hotkeys(data) {
+  function del_all_keys(item) {
+    let { all_keys, keys_rotation, keys_together } = DataEvents;
+    let i = -1;
+    all_keys.forEach(({ name }, index) => {
+      if (name == item) i = index;
+    });
+
+    if (i !== -1) {
+      all_keys.splice(i, 1);
+      update_hotkeys();
+    }
+  }
+  if (isArray(data)) {
+    data.forEach(del_all_keys);
+  } else if (isString(data)) del_all_keys(data);
+}
+
+function update_hotkeys() {
+  let { all_keys, keys_rotation, keys_together } = DataEvents;
+
+  keys_rotation.splice(0, keys_rotation.length);
+  keys_together.splice(0, keys_together.length);
+
+  all_keys.forEach(({ codes, curr_type }, index) => {
+    DataEvents[curr_type].push({ codes, func_index: index });
   });
+}
+
+function change_name_hotkeys(str, newStr) {
+  let { all_keys } = DataEvents;
+  let i = -1;
+  if (str !== newStr) {
+    all_keys.forEach(({ codes, name }, index) => {
+      if (str == name) {
+        i = index;
+      }
+    });
+    if (i !== -1) {
+      const { arr_keys, curr_type } = check_data(newStr);
+      if (curr_type !== '') {
+        all_keys[i].name = newStr;
+        all_keys[i].codes = arr_keys;
+        if (arguments[2] !== undefined && typeof arguments[2] == 'function') {
+          all_keys[i].func = arguments[2];
+        }
+        update_hotkeys();
+      }
+    }
+  }
 }

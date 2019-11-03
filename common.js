@@ -1,18 +1,10 @@
-// DocKeyDown.init();
-// DocKeyDown.push_hotkeys(['xc', 'col', 'qwd'], function() {
-//   text.innerHTML += 'Получилось!';
-// });
-// DocKeyDown.push_hotkeys(
-//   ['ctrl+alt+x', 'er', 'ctrly', 'left-arrow+f'],
-// function() {
-//   text.innerHTML += 'Fuck!';
-// },
-// );
+// ctrl+alt+x- 17 18 88
+// shift+c= 16 67
+add_hotkeys(['ctrl+alt+x', 'c-o-l', 'shift+alt+b'], function() {
+  text.innerHTML += ' Fuck!';
+});
 
-add_hotkeys(['ctrl+alt+x'], function() {
-  text.innerHTML += 'Fuck!';
-});
-add_hotkeys('col', function() {
-  text.innerHTML += 'Fuck!';
-});
-// del_hotkeys('ctrl+alt+x');
+// change_name_hotkeys('ctrl+alt+x', 'shift+c', function() {
+//   text.innerHTML += 'Change!';
+// });
+// del_hotkeys(['ctrl-k-l', 'z-x-c']);
