@@ -11,7 +11,7 @@ function isString(value) {
   return typeof value == 'string';
 }
 let DataEvents = {
-  keys_rotation: [] /* "По очереди" */,
+  keys_rotation: [],
   keys_together: [] /* "Одновременно" */,
   all_keys: [] /* Массив всех клавиш */,
   key_rot: [],
