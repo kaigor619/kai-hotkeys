@@ -72,6 +72,8 @@ Kai-hotkeys has been tested and should work in.
 ```shell
 Firefox
 Chrome
+Opera
+Edge
 ```
 
 ## Supported Keys
