@@ -4,7 +4,7 @@
   "description": "Simple JavaScript shortcuts and hotkeys library. This library has no dependencies and is very small in size (7 KB), compressed version - 4 KB. It is very easy to add, delete, change hotkeys or shortcuts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/kaigor619/kai-hotkeys/issues"
   },
-  "homepage": "https://github.com/kaigor619/kai-hotkeys#readme"
+  "homepage": "https://github.com/kaigor619/kai-hotkeys#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-preset-minify": "^0.5.1",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0"
+  }
 }
