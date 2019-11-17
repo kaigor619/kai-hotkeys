@@ -16,29 +16,32 @@ npm install kai-hotkeys --save
 ## Commands
 
 hotkeys - is an object that has such methods:
-  add - add a hotkey
-  change - change a hotkey
-  delete - delete
-  is - check for the existence of hotkey
-  enable - enable work
-  disable - disable work
+add - add a hotkey
+change - change a hotkey
+delete - delete
+is - check for the existence of hotkey
+enable - enable work
+disable - disable work
 
 ## Syntax
 
+```shell
 hotkeys.add(name, function, options);
 hotkeys.change(name, name2, function2, options2);
 hotkeys.delete(name);
 hotkeys.is(name);
 hotkeys.enable();
 hotkeys.disable();
+```
 
 Arguments:
-  name - hotkey name
-  function - function to be executed
-  name2 - changed name
-  function2 - changed function
-  options - options that has such options:
-  pressingOnce:false, allows when the user releases the key to repeat the operation by pressing back
+
+- name - hotkey name
+- function - function to be executed
+- name2 - changed name
+- function2 - changed function
+- options - options that has such options:
+- pressingOnce:false, allows when the user releases the key to repeat the operation by pressing back
 
 Recommendation: use {pressingOnce:true} when your function is alert, confirm or prompt.
 
@@ -95,10 +98,11 @@ hotkeys.disable();
 ## Api
 
 hotkeys.api has such methods:
-getHotkeys() - return all hotkeys
-getSpecialKeys() - return list of special keys
-getVisibleState() - return state of work (on/false)
-getIndex(name) - return index found name
+
+- getHotkeys() - return all hotkeys
+- getSpecialKeys() - return list of special keys
+- getVisibleState() - return state of work (on/false)
+- getIndex(name) - return index found name
 
 ## Browser Support
 
