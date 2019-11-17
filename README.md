@@ -41,7 +41,7 @@ Arguments:
 - name2 - changed name
 - function2 - changed function
 - options - options that has such options:
-- pressingOnce:false, allows when the user releases the key to repeat the operation by pressing back
+  pressingOnce:false, allows when the user releases the key to repeat the operation by pressing back
 
 Recommendation: use {pressingOnce:true} when your function is alert, confirm or prompt.
 
