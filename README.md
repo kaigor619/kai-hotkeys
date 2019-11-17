@@ -16,23 +16,13 @@ npm install kai-hotkeys --save
 ## Commands
 
 hotkeys - is an object that has such methods:
-add - add a hotkey
-change - change a hotkey
-delete - delete
-is - check for the existence of hotkey
-enable - enable work
-disable - disable work
 
-## Syntax
-
-```shell
-hotkeys.add(name, function, options);
-hotkeys.change(name, name2, function2, options2);
-hotkeys.delete(name);
-hotkeys.is(name);
-hotkeys.enable();
-hotkeys.disable();
-```
+- add(name, function, options) - add a hotkey
+- change(name, name2, function2, options2) - change a hotkey
+- change(name, name2, function2, options2) - delete
+- is(name) - check for the existence of hotkey
+- enable() - enable work
+- disable() - disable work
 
 Arguments:
 
